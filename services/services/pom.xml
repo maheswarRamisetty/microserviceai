@@ -1,15 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.mahesh.arch.shared</groupId>
-  <artifactId>common-events</artifactId>
+  <groupId>com.mahesh.arch.services</groupId>
+  <artifactId>services</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>common-events</name>
+  <name>services</name>
   <url>http://maven.apache.org</url>
-    <modules>
-        <module>common-events</module>
-    </modules>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -17,12 +14,5 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-      <!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
-      <dependency>
-          <groupId>com.fasterxml.jackson.dataformat</groupId>
-          <artifactId>jackson-dataformat-xml</artifactId>
-          <version>2.20.1</version>
-          <scope>compile</scope>
-      </dependency>
   </dependencies>
 </project>

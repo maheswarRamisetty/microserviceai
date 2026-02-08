@@ -11,7 +11,7 @@
   <url>http://maven.apache.org</url>
 
     <modules>
-        <module>shared</module>
+        <module>shared/common-events</module>
         <module>serives</module>
     </modules>
 
