@@ -12,7 +12,7 @@
 
     <modules>
         <module>shared/common-events</module>
-        <module>serives</module>
+        <module>services/services</module>
     </modules>
 
   <properties>
