@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.mahesh.arch.services</groupId>
+    <artifactId>services</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.mahesh.arch.repo</groupId>
+  <artifactId>repo-scanner-service</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>repo-scanner-service</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+      <dependency>
+          <groupId>com.mahesh.arch.shared</groupId>
+          <artifactId>common-events</artifactId>
+          <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <!-- Source: https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
+      <dependency>
+          <groupId>org.eclipse.jgit</groupId>
+          <artifactId>org.eclipse.jgit</artifactId>
+          <version>7.3.0.202506031305-r</version>
+          <scope>compile</scope>
+      </dependency>
+      <!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot</artifactId>
+          <version>4.0.1</version>
+          <scope>compile</scope>
+      </dependency>
+      <!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+          <version>4.0.1</version>
+          <scope>compile</scope>
+      </dependency>
+
+      <!-- Source: https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
+      <dependency>
+          <groupId>org.springframework.kafka</groupId>
+          <artifactId>spring-kafka</artifactId>
+          <version>3.3.10</version>
+          <scope>compile</scope>
+      </dependency>
+  </dependencies>
+</project>
