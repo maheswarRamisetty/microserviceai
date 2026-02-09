@@ -10,11 +10,10 @@
   <name>LivingArchitecture</name>
   <url>http://maven.apache.org</url>
 
-    <modules>
-        <module>shared/common-events</module>
-        <module>services/services</module>
-    </modules>
-
+ <modules>
+     <module>common-events</module>
+     <module>services</module>
+ </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
