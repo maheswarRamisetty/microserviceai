@@ -4,12 +4,14 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.nio.file.Path;
 import java.util.List;
 
 @Data
 @Getter
 @Setter
-public class RepoScanRequest {
-    private String repoUrl;
-    private List<String> branches;
+public class ScanEvent {
+    private Path repo;
+    private String branch;
+    private List<FileMetadata> files;
 }
