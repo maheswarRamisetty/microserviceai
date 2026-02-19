@@ -8,7 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 import java.util.List;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.mahesh.arch")
+@ComponentScan(basePackages = {
+        "com.mahesh.arch.config",
+        "com.mahesh.arch"
+})
 public class RepoScannerApplication {
     public static void main(String[] args){
         SpringApplication.run(RepoScannerApplication.class,args);
