@@ -2,6 +2,7 @@ package com.mahesh.arch.config;
 
 import com.mahesh.arch.model.ScanEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.config.SslConfigs;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,9 +22,14 @@ public class KafkaConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
+
+
     @Bean
     public ProducerFactory<String, ScanEvent> scanEventProducerFactory() {
         Map<String, Object> props = new HashMap<>();
+        props.put("security.protocol", "SSL");
+        props.put("ssl.truststore.location", "C:\\Users\\2438060\\Desktop\\cacerts");
+        props.put("ssl.truststore.password", "changeit");
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);

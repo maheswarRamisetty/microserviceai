@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 
 @Service
 public class GitService {
@@ -20,46 +22,45 @@ public class GitService {
 
     public Path cloneOrPull(String repoUrl, String branch) throws Exception {
         String repoName = repoUrl.substring(repoUrl.lastIndexOf("/") + 1).replace(".git", "");
-        Path repoPath = Paths.get(BASE_DIR, repoName, branch);
-        File repoFile = repoPath.toFile();
-        File dotGit = new File(repoFile, ".git");
+        Path repoRootPath = Paths.get(BASE_DIR, repoName);
+        File repoRoot = repoRootPath.toFile();
+        File dotGit = new File(repoRoot, ".git");
 
         UsernamePasswordCredentialsProvider credentials =
                 new UsernamePasswordCredentialsProvider("token", gitToken);
 
         if (dotGit.exists()) {
-            try (Git git = Git.open(repoFile)) {
-                git.pull()
-                        .setCredentialsProvider(credentials)
-                        .setRemote("origin")
-                        .call();
-                return repoPath;
+            try (Git git = Git.open(repoRoot)) {
+                git.checkout().setName(branch).call();
+                git.pull().setCredentialsProvider(credentials).call();
+                return repoRootPath;
             }
         } else {
-            if (repoFile.exists()) {
-                cleanDirectory(repoFile);
+            if (repoRoot.exists()) {
+                deleteRecursively(repoRoot.toPath());
             }
-
             try (Git git = Git.cloneRepository()
                     .setURI(repoUrl)
-                    .setDirectory(repoFile)
-                    .setBranch(branch)
+                    .setDirectory(repoRoot)
+                    .setBranch("refs/heads/" + branch)
                     .setCredentialsProvider(credentials)
                     .setCloneAllBranches(false)
                     .setDepth(1)
                     .call()) {
-                return repoPath;
+                git.checkout().setName(branch).call();
+                return repoRootPath;
             }
         }
     }
 
-    private void cleanDirectory(File file) {
-        File[] children = file.listFiles();
-        if (children != null) {
-            for (File child : children) {
-                cleanDirectory(child);
-            }
-        }
-        file.delete();
+    private void deleteRecursively(Path path) throws Exception {
+        if (!Files.exists(path)) return;
+        Files.walk(path)
+                .sorted(Comparator.reverseOrder())
+                .forEach(p -> {
+                    try { Files.deleteIfExists(p); }
+                    catch (Exception e) { throw new RuntimeException("Failed to delete " + p, e); }
+                });
     }
+
 }
