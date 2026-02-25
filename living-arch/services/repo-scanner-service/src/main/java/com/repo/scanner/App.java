@@ -1,4 +1,4 @@
-package com.mahesh.app;
+package com.repo.scanner;
 
 /**
  * Hello world!
